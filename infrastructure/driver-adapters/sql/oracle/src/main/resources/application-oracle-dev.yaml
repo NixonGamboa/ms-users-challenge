@@ -4,9 +4,6 @@ spring:
     url: jdbc:oracle:thin:@//localhost:1521/METRO
     username: metro
     password: adminroot
-#    url: jdbc:oracle:thin:@//civicadb.cbv7b5a3wfcm.us-east-1.rds.amazonaws.com:1521/ORCL
-#    username: metro
-#    password: METROPWD
     driver-class-name: oracle.jdbc.OracleDriver
     # HikariCP settings
     hikari:
@@ -15,7 +12,6 @@ spring:
       idleTimeout: 30000
       maxLifetime: 2000000
       connectionTimeout: 30000
-      poolName: HikariPoolMetro
   # JPA settings
   jpa:
     database-platform: org.hibernate.dialect.OracleDialect
