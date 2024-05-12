@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: "ms-users"
+  devtools:
+    add-properties: false
+    restart:
+      enable: false
+  profiles:
+    active: dev   #dev, prod
+    group:
+      dev:
+        - "dev"
+        - "model-dev"
+        - "usecase-dev"
+        - "utilities-dev"
+        - "rest-dev"
+        - "mongodb-dev"
+        - "oracle-dev"
+        - "rest-client-dev"
+      prod:
+        - "prod"
+        - "model-prod"
+        - "usecase-prod"
+        - "utilities-prod"
+        - "rest-prod"
+        - "mongodb-prod"
+        - "oracle-prod"
+        - "rest-client-prod"

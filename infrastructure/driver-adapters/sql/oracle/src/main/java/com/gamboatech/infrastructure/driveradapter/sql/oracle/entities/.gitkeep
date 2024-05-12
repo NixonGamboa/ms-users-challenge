@@ -1,0 +1,13 @@
+@Getter
+@Setter
+@Entity
+@Table(name = "myTable", schema = "mySchema")
+public class MyEntity {
+
+    @Id
+    @Column(name = "id", nullable = false)
+    private Long id;
+
+    @Column(name = "desc")
+    private String desc;
+}

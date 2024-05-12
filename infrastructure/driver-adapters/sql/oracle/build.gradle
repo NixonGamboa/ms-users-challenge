@@ -1,0 +1,9 @@
+dependencies {
+//    implementation project(':domain-model')
+//    implementation project(':application-adapters')
+
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+    implementation "org.modelmapper:modelmapper:${modelmapper_version}"
+    implementation "javax.persistence:javax.persistence-api:${javax_persistence_api_version}"
+    implementation "com.oracle.database.jdbc:ojdbc11:${oracle_ojdbc11_version}"
+}

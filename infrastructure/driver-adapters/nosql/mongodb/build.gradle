@@ -1,0 +1,10 @@
+dependencies {
+//    implementation project(':domain-model')
+//    implementation project(':application-adapters')
+
+    api 'org.springframework.data:spring-data-jpa'
+    api 'org.springframework.boot:spring-boot-starter-data-mongodb'
+//    testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo:4.9.2'
+    implementation "org.modelmapper:modelmapper:${modelmapper_version}"
+
+}

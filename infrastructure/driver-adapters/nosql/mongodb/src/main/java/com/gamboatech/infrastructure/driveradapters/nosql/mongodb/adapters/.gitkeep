@@ -1,0 +1,35 @@
+@Component
+@Slf4j
+public class MyDocumentRepositoryAdapterImpl implements MyDocumentRepositoryAdapter {
+
+    private final MyDocumentRepository repository;
+
+    private final ModelMapper modelMapper;
+
+
+    //Dependency Inject
+    public MyDocumentRepositoryAdapterImpl(MyDocumentRepository repository, ModelMapper modelMapper) {
+        this.repository = repository;
+        this.modelMapper = modelMapper;
+    }
+
+    @Override
+    public MyDocument findByDescription(String description) {
+
+        try {
+
+        Optional<MyDocument> result = repository.findByDescription(description);
+
+            if (result.isPresent()) {
+                return convertToModel(result.get());
+            }
+
+            return new Exception("Not Found");
+        }catch (DataAccessResourceFailureException error){
+            return error;
+        }
+    }
+    private MyModel convertToModel(MyDocument document) {
+            return modelMapper.map(document, MyModel.class);
+    }
+}
