@@ -54,7 +54,7 @@ class ClientControllerTest {
     }
 
     @Test
-    void create() {
+    void shouldCreateANewClientSuccessfully() {
 
         when(clientUseCase.create(refEq(this.model)))
                 .thenReturn(this.model);
@@ -75,7 +75,7 @@ class ClientControllerTest {
     }
 
     @Test
-    void update() {
+    void ShouldUpdateAnExistentClientSuccessfully() {
         when(clientUseCase.update(refEq(this.model)))
                 .thenReturn(this.model);
 
@@ -85,7 +85,7 @@ class ClientControllerTest {
     }
 
     @Test
-    void delete() {
+    void ShouldDeleteAClientByIdSuccessfully() {
         doNothing().when(clientUseCase).delete(123L);
         underTest.delete(dto.getId());
         verify(clientUseCase,times(1)).delete(123L);

@@ -24,13 +24,8 @@ public class ClientRepositoryAdapterImpl implements ClientRepositoryAdapter {
     @Override
     public Client save(Client client) {
 
-        try {
             ClientEntity newClient = repository.save(toEntity(client));
             return toModel(newClient);
-
-        } catch (DataAccessResourceFailureException exception) {
-            throw  exception;
-        }
     }
 
     @Override
