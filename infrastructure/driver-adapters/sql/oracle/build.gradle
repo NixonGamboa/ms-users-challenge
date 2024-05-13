@@ -1,6 +1,6 @@
 dependencies {
-//    implementation project(':domain-model')
-//    implementation project(':application-adapters')
+    implementation project(':domain-model')
+    implementation project(':application-adapters')
 
     implementation "org.springframework.boot:spring-boot-starter-data-jpa"
     implementation "org.modelmapper:modelmapper:${modelmapper_version}"

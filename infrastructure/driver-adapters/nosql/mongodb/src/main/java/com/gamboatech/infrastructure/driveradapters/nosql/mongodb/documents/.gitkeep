@@ -1,9 +1,0 @@
-@Getter
-@Setter
-@Document(collection = "MyCollection")
-public class MyCollectionDocument {
-
-    @Id
-    private String id;
-    private String description;
-}

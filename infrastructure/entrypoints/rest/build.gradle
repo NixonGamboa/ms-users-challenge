@@ -1,8 +1,9 @@
 dependencies {
-//    implementation project(':domain-model')
-//    implementation project(':application-adapters')
-//    implementation project(':domain-usecase')
+    implementation project(':domain-model')
+    implementation project(':application-adapters')
+    implementation project(':domain-usecase')
 
     implementation "org.springframework.boot:spring-boot-starter-webflux"
+    implementation "org.modelmapper:modelmapper:${modelmapper_version}"
 
 }

@@ -1,5 +1,0 @@
-spring:
-  data:
-    mongodb:
-      database: sap_connector
-      uri: mongodb://localhost:27017/sap_connector

@@ -5,7 +5,6 @@ dependencies {
     implementation project(':domain-usecase')
     implementation project(':domain-utilities')
     implementation project(':entrypoints-rest')
-    implementation project(':nosql-mongodb')
     implementation project(':sql-oracle')
     implementation project(':application-adapters')
 
