@@ -29,4 +29,9 @@ public class ClientController {
     public void delete(@PathVariable("id") Long id){
         clientUseCase.delete(id);
     }
+
+    @GetMapping("/{identificationNumber}")
+    public ClientDto getByIdentificationNumber(@PathVariable("identificationNumber") String identificationNumber) {
+        return ClientDto.modelToDto(clientUseCase.getByIdentificationNumber(identificationNumber));
+    }
 }

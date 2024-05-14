@@ -8,4 +8,6 @@ public interface ClientRepositoryAdapter {
     Client update (Client client);
 
     void delete (Long id);
+
+    Client findByIdentificationNumber(String identificationNumber);
 }

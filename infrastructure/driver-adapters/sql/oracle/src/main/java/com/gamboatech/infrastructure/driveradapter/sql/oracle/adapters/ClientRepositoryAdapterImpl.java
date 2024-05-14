@@ -1,6 +1,8 @@
 package com.gamboatech.infrastructure.driveradapter.sql.oracle.adapters;
 
 import com.gamboatech.application.adapters.driveradapters.sql.ClientRepositoryAdapter;
+import com.gamboatech.domain.commons.BusinessException;
+import com.gamboatech.domain.commons.ErrorCodes;
 import com.gamboatech.domain.commons.Gender;
 import com.gamboatech.domain.model.Client;
 import com.gamboatech.infrastructure.driveradapter.sql.oracle.entities.ClientEntity;
@@ -32,7 +34,9 @@ public class ClientRepositoryAdapterImpl implements ClientRepositoryAdapter {
         if(exist.isPresent()){
             return toModel(repository.save(toEntity(client)));
         }
-        throw new RuntimeException("Client Not Found");
+        throw new BusinessException(
+                ErrorCodes.NOT_FOUND,
+                String.format("El cliente con id %d no existe", client.getId()));
     }
 
     @Override
@@ -40,6 +44,14 @@ public class ClientRepositoryAdapterImpl implements ClientRepositoryAdapter {
         repository.deleteById(id);
     }
 
+    @Override
+    public Client findByIdentificationNumber(String identificationNumber) {
+        Optional<ClientEntity> optionalClient = repository.findByIdentificationNumber(identificationNumber);
+        if(optionalClient.isPresent()) return toModel(optionalClient.get());
+        throw new BusinessException(
+                ErrorCodes.NOT_FOUND,
+                String.format("El cliente con numero de identificación %s no existe", identificationNumber));
+    }
 
 
     private Client toModel(ClientEntity entity){

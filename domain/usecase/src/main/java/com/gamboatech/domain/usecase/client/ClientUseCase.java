@@ -9,4 +9,6 @@ public interface ClientUseCase {
     Client update (Client client);
 
     void delete (Long id);
+
+    Client getByIdentificationNumber(String identificationNumber);
 }

@@ -30,4 +30,9 @@ public class ClientUseCaseImpl implements ClientUseCase{
     public void delete(Long id) {
         repositoryAdapter.delete(id);
     }
+
+    @Override
+    public Client getByIdentificationNumber(String identificationNumber) {
+        return repositoryAdapter.findByIdentificationNumber(identificationNumber);
+    }
 }
