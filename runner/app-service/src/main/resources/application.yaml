@@ -6,7 +6,7 @@ spring:
     restart:
       enable: false
   profiles:
-    active: dev   #dev, prod
+    active: prod   #dev, prod
     group:
       dev:
         - "dev"

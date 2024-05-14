@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  ms-users:
+    build: .
+    ports:
+      - "8082:8082"
+  myoracle:
+    image: gvenzl/oracle-free
+    ports:
+      - "1521:1521"
+    environment:
+      - ORACLE_DATABASE=devlocal
+      - APP_USER=develop
+      - APP_USER_PASSWORD=adminroot
+      - ORACLE_PASSWORD=adminroot

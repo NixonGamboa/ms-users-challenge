@@ -11,6 +11,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Objects;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.refEq;
 import static org.mockito.Mockito.*;
@@ -59,8 +61,9 @@ class ClientControllerTest {
         when(clientUseCase.create(refEq(this.model)))
                 .thenReturn(this.model);
 
-        var result = underTest.create(this.dto);
+        var result = underTest.create(this.dto).getBody();
 
+        assertTrue(Objects.nonNull(result));
         assertEquals(this.dto.getId(), result.getId());
         assertEquals(this.dto.getClientId(), result.getClientId());
         assertEquals(this.dto.getName(), result.getName());

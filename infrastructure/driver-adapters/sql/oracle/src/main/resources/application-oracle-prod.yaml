@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    # OracleDB connection settings
+    url: jdbc:oracle:thin:@//myoracle:1521/devlocal
+    username: develop
+    password: adminroot
+    driver-class-name: oracle.jdbc.OracleDriver
+    # HikariCP settings
+    hikari:
+      minimumIdle: 5
+      maximumPoolSize: 20
+      idleTimeout: 30000
+      maxLifetime: 2000000
+      connectionTimeout: 30000
+  # JPA settings
+  jpa:
+    database-platform: org.hibernate.dialect.OracleDialect
+    hibernate.use-new-id-generator-mappings: false
+    hibernate.ddl-auto: update
