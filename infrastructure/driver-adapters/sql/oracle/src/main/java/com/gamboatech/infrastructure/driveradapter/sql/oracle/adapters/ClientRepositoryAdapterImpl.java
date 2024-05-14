@@ -5,11 +5,8 @@ import com.gamboatech.domain.commons.Gender;
 import com.gamboatech.domain.model.Client;
 import com.gamboatech.infrastructure.driveradapter.sql.oracle.entities.ClientEntity;
 import com.gamboatech.infrastructure.driveradapter.sql.oracle.repositories.ClientEntityRepository;
-import org.springframework.dao.DataAccessResourceFailureException;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Component;
 
-import java.io.FileNotFoundException;
 import java.util.Optional;
 
 @Component

@@ -1,7 +1,6 @@
 package com.gamboatech.domain.usecase.client;
 
 import com.gamboatech.domain.model.Client;
-import org.springframework.stereotype.Service;
 
 public interface ClientUseCase {
 
