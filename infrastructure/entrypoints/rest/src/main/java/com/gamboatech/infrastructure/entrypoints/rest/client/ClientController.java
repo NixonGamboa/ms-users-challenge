@@ -3,6 +3,7 @@ package com.gamboatech.infrastructure.entrypoints.rest.client;
 import com.gamboatech.domain.model.Client;
 import com.gamboatech.domain.usecase.client.ClientUseCase;
 import com.gamboatech.infrastructure.entrypoints.rest.dto.ClientDto;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,23 +16,27 @@ public class ClientController {
     }
 
     @PostMapping
-    public ClientDto create(@RequestBody ClientDto clientDto){
+    public ResponseEntity<ClientDto> create(@RequestBody ClientDto clientDto){
         Client client = clientUseCase.create(clientDto.toModel());
-        return ClientDto.modelToDto(client);
+        return ResponseEntity.ok(ClientDto.modelToDto(client));
     }
 
     @PutMapping
-    public ClientDto update(@RequestBody ClientDto clientDto){
-        return ClientDto.modelToDto(clientUseCase.update(clientDto.toModel()));
+    public ResponseEntity<ClientDto> update(@RequestBody ClientDto clientDto){
+        ClientDto updatedClient = ClientDto.modelToDto(clientUseCase.update(clientDto.toModel()));
+        return ResponseEntity.ok(updatedClient);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Long id){
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id){
         clientUseCase.delete(id);
+        return ResponseEntity.ok(null);
     }
 
     @GetMapping("/{identificationNumber}")
-    public ClientDto getByIdentificationNumber(@PathVariable("identificationNumber") String identificationNumber) {
-        return ClientDto.modelToDto(clientUseCase.getByIdentificationNumber(identificationNumber));
+    public ResponseEntity<ClientDto> getByIdentificationNumber(@PathVariable("identificationNumber") String identificationNumber) {
+        ClientDto clientDto = ClientDto.modelToDto(
+                clientUseCase.getByIdentificationNumber(identificationNumber));
+        return ResponseEntity.ok(clientDto);
     }
 }
