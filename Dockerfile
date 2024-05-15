@@ -6,6 +6,6 @@ COPY ./runner/app-service/build/libs/ms-users.jar ./home/app
 
 WORKDIR ./home/app
 
-EXPOSE 8080
+EXPOSE 8082
 
 CMD ["java", "-jar", "ms-users.jar"]
