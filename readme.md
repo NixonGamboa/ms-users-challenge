@@ -28,11 +28,6 @@ La distribución de módulos y paquetes del proyecto se basa en Arquitecturas Li
 * Tener instalado [**Gradle 8.1.1**](https://gradle.org/install/).
 * Tener instalado [**Podman**](https://podman.io/docs/installation). Si usas Windows y tienes problemas con la
   ejecución de Podman, puedes ver esta [guía](https://blog.scottlogic.com/2022/02/15/replacing-docker-desktop-with-podman.html).
-* Se requiere un servidor de **MongoDB** instalado en la máquina local, para esto se recomienda usar una imagen de
-  docker, la cual puedes obtener ejecutando el siguiente comando:
-  ```shell script
-  podman run --name mongodb -p 27017:27017 -d mongo:latest
-  ```
 * Se requiere un servidor **Oracle** instalado en la máquina local, para esto se recomienda usar una imagen de
   docker, la cual puedes obtener ejecutando el siguiente comando:
   ```shell script
