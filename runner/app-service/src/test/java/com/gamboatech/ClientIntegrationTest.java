@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest( webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -118,6 +119,18 @@ class ClientIntegrationTest {
                         .accept(MediaType.APPLICATION_JSON)
                 )
                 .andExpect(status().isOk());
+    }
+    @Test
+    void shouldValidateIdForDeleteClient () throws Exception {
+        mvc.perform(MockMvcRequestBuilders
+                        .delete("/clientes/abc")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(REQUEST_BODY)
+                        .accept(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.code").value("BAD_REQUEST"))
+                .andExpect(jsonPath("$.message").value("Valor invalido para el parametro 'id': abc"));
     }
 
     private String createURLWithPort() {

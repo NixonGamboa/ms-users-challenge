@@ -1,14 +1,14 @@
 package com.gamboatech.infrastructure.entrypoints.rest.dto;
 
-import ch.qos.logback.core.model.Model;
 import com.gamboatech.domain.commons.Gender;
 import com.gamboatech.domain.model.Client;
-import com.gamboatech.domain.model.Person;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.modelmapper.ModelMapper;
 
 @Setter
 @Getter
@@ -16,13 +16,21 @@ import org.modelmapper.ModelMapper;
 @AllArgsConstructor
 public class ClientDto {
     private Long id;
+
+    @NotBlank
     private String name;
-    private String gender;
-    private Integer age;
+    @NotNull
     private String identificationNumber;
+    @NotNull
     private String address;
+    @NotNull
     private String phoneNumber;
+    @NotNull
     private String password;
+    @NotNull
+    @Min(18)
+    private Integer age;
+    private String gender;
     private Boolean status;
     private String clientId;
 
