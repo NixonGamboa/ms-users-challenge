@@ -1,8 +1,8 @@
 spring:
   datasource:
     # OracleDB connection settings
-    url: jdbc:oracle:thin:@//localhost:1521/METRO
-    username: metro
+    url: jdbc:oracle:thin:@//localhost:1521/devlocal
+    username: develop
     password: adminroot
     driver-class-name: oracle.jdbc.OracleDriver
     # HikariCP settings

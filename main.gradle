@@ -30,7 +30,7 @@ subprojects {
         implementation 'io.projectreactor.addons:reactor-extra'
         implementation 'org.springframework:spring-context'
         implementation "com.fasterxml.jackson.core:jackson-databind:${jackson_databind_version}"
-
+        implementation 'org.springframework.boot:spring-boot-starter-web'
 
         implementation "org.slf4j:slf4j-api:${slf4j_api_version}"
         compileOnly "org.projectlombok:lombok:${lombok_version}"

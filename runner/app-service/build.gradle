@@ -11,7 +11,6 @@ dependencies {
 
     implementation "org.reactivecommons.utils:object-mapper:${object_mapper_version}"
     implementation "org.springframework.boot:spring-boot-starter"
-//    implementation "org.springframework.boot:spring-boot-starter-data-mongodb-reactive"
     runtimeOnly('org.springframework.boot:spring-boot-devtools')
     testImplementation "com.tngtech.archunit:archunit:${archunit_version}"
 }

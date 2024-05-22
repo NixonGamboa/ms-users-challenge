@@ -6,7 +6,7 @@ spring:
     restart:
       enable: false
   profiles:
-    active: prod   #dev, prod
+    active: test   #dev, prod, test
     group:
       dev:
         - "dev"
@@ -26,3 +26,5 @@ spring:
         - "mongodb-prod"
         - "oracle-prod"
         - "rest-client-prod"
+      test:
+        - "oracle-test"

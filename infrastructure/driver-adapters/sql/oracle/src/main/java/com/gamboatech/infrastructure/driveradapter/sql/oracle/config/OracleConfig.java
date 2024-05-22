@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
@@ -16,6 +17,7 @@ import java.sql.SQLException;
 @Configuration
 @EnableJpaRepositories(basePackages = {"com.gamboatech.infrastructure.driveradapter.sql.oracle"})
 @EntityScan(basePackages = {"com.gamboatech.infrastructure.driveradapter.sql.oracle.entities"})
+@Profile("!test")
 public class OracleConfig {
     @Autowired
     private Environment env;

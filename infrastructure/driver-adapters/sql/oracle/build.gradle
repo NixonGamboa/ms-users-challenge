@@ -6,4 +6,7 @@ dependencies {
     implementation "org.modelmapper:modelmapper:${modelmapper_version}"
     implementation "javax.persistence:javax.persistence-api:${javax_persistence_api_version}"
     implementation "com.oracle.database.jdbc:ojdbc11:${oracle_ojdbc11_version}"
+
+    runtimeOnly ('com.h2database:h2')
+    testImplementation "com.h2database:h2"
 }
