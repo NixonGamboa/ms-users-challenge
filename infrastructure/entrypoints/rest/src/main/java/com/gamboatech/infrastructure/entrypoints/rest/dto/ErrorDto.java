@@ -1,7 +1,6 @@
 package com.gamboatech.infrastructure.entrypoints.rest.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 
 @Getter

@@ -1,12 +1,9 @@
 package com.gamboatech.infrastructure.driveradapter.sql.oracle.entities;
 
-import com.gamboatech.domain.commons.Gender;
-import com.gamboatech.domain.model.Client;
 import jakarta.persistence.*;
-import lombok.*;
-
-import java.util.Objects;
-import java.util.UUID;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Setter
 @Getter

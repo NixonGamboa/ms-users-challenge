@@ -4,7 +4,6 @@ import com.gamboatech.domain.model.Client;
 import com.gamboatech.domain.usecase.client.ClientUseCase;
 import com.gamboatech.infrastructure.entrypoints.rest.dto.ClientDto;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Positive;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
