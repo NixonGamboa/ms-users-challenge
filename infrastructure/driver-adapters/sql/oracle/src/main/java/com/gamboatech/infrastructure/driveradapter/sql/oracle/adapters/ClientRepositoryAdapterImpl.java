@@ -22,9 +22,12 @@ public class ClientRepositoryAdapterImpl implements ClientRepositoryAdapter {
 
     @Override
     public Client save(Client client) {
+        Optional<ClientEntity> clientExist = repository.findByIdentificationNumber(client.getIdentificationNumber());
+        if(clientExist.isPresent())
+            throw new BusinessException(ErrorCodes.DUPLICATED, String.format("El cliente con numero de identificacion %s ya existe",client.getIdentificationNumber()));
 
-            ClientEntity newClient = repository.save(toEntity(client));
-            return toModel(newClient);
+        ClientEntity newClient = repository.save(toEntity(client));
+        return toModel(newClient);
     }
 
     @Override

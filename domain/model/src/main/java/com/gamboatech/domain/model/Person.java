@@ -1,7 +1,6 @@
 package com.gamboatech.domain.model;
 
 import com.gamboatech.domain.commons.Gender;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class ClientIntegrationTest {
 
     private static final String REQUEST_BODY = "{\n" +
-            "  \"id\": \"999\",\n" +
+            "  \"id\": 999,\n" +
             "  \"name\": \"Nixon Gamboa\",\n" +
             "  \"gender\": \"MALE\",\n" +
             "  \"age\": 30,\n" +
@@ -35,7 +35,8 @@ class ClientIntegrationTest {
             "  \"clientId\": \"client123\"\n" +
             "}";
     private static final String SQL_INSERT = "INSERT INTO clients(id, name, gender, age, identification_number, address, phone_number, password, status, client_id)" +
-            " VALUES (999, 'Juan', 'MALE', 30, '1234567890', 'Calle Principal 123', '1234567890', 'password123', true, 'client-999')";
+            " VALUES (999, 'Juan', 'MALE', 30, 'ABC123456', 'Calle Principal 123', '1234567890', 'password123', true, 'client-999')";
+    private final String insertDuplicated = SQL_INSERT.replace("1234567890", "ABC123456");
     @LocalServerPort
     private int port;
     @Autowired
@@ -58,7 +59,7 @@ class ClientIntegrationTest {
 
         HttpEntity<String> entity = new HttpEntity<>(null, headers);
         ResponseEntity<Client> response = restTemplate.exchange(
-                createURLWithPort() + "/1234567890",
+                createURLWithPort() + "/ABC123456",
                 HttpMethod.GET, entity,
                 new ParameterizedTypeReference<Client>() {
                 });
@@ -68,7 +69,7 @@ class ClientIntegrationTest {
 
         assertEquals("Juan", result.getName());
         assertEquals(30, result.getAge());
-        assertEquals("1234567890", result.getIdentificationNumber());
+        assertEquals("ABC123456", result.getIdentificationNumber());
         assertEquals("Calle Principal 123", result.getAddress());
         assertEquals("1234567890", result.getPhoneNumber());
         assertEquals("password123", result.getPassword());
@@ -76,7 +77,7 @@ class ClientIntegrationTest {
     }
 
     @Test
-    @Sql(statements = "DELETE FROM clients WHERE id='999'", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    @Sql(statements = "DELETE FROM clients WHERE id='1'", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     void shouldCreateClient() throws Exception {
         mvc.perform(MockMvcRequestBuilders
                         .post("/clientes")
@@ -84,7 +85,23 @@ class ClientIntegrationTest {
                         .content(REQUEST_BODY)
                         .accept(MediaType.APPLICATION_JSON)
                 )
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value("1"));
+    }
+
+    @Test
+    @Sql(statements = SQL_INSERT, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(statements = "DELETE FROM clients WHERE id='999'", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    void shouldNotCreateClientWithDuplicatedIdentificationNumber() throws Exception {
+        mvc.perform(MockMvcRequestBuilders
+                        .post("/clientes")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(REQUEST_BODY)
+                        .accept(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isConflict())
+                .andExpect(jsonPath("$.code").value("DUPLICATED"))
+                .andExpect(jsonPath("$.message").value("El cliente con numero de identificacion ABC123456 ya existe"));
     }
 
     @Test

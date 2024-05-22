@@ -14,8 +14,7 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 
 import java.util.EnumMap;
 
-import static com.gamboatech.domain.commons.ErrorCodes.BAD_REQUEST;
-import static com.gamboatech.domain.commons.ErrorCodes.NOT_FOUND;
+import static com.gamboatech.domain.commons.ErrorCodes.*;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
 @Slf4j
@@ -66,6 +65,7 @@ public class ControllerAdvice {
         EnumMap<ErrorCodes, HttpStatus> errorCodeMapper = new EnumMap<>(ErrorCodes.class);
         errorCodeMapper.put(NOT_FOUND,HttpStatus.NOT_FOUND);
         errorCodeMapper.put(BAD_REQUEST,HttpStatus.BAD_REQUEST);
+        errorCodeMapper.put(DUPLICATED, HttpStatus.CONFLICT);
 
         return errorCodeMapper.getOrDefault(errorCode,INTERNAL_SERVER_ERROR);
     }
